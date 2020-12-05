@@ -56,3 +56,40 @@ testing <- testing[, 6:dim(testing)[2]]
 testing <- testing[, goodColumns]
 testing$classe <- NA
 testing <- testing[, badColumns$nzv==FALSE]
+
+mod1 <- train(classe ~ ., data=training, method="rf")
+
+pred1 <- predict(mod1, crossv)
+
+confusionMatrix(pred1, crossv$classe)
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    A    B    C    D    E
+##          A 1672    3    0    0    0
+##          B    1 1135    6    0    0
+##          C    0    1 1020    4    0
+##          D    0    0    0  960    1
+##          E    1    0    0    1 1081
+## 
+## Overall Statistics
+##                                         
+##                Accuracy : 0.997         
+##                  95% CI : (0.995, 0.998)
+##     No Information Rate : 0.284         
+##     P-Value [Acc > NIR] : <2e-16        
+##                                         
+##                   Kappa : 0.996         
+##  Mcnemar's Test P-Value : NA            
+## 
+## Statistics by Class:
+## 
+##                      Class: A Class: B Class: C Class: D Class: E
+## Sensitivity             0.999    0.996    0.994    0.995    0.999
+## Specificity             0.999    0.999    0.999    1.000    1.000
+## Pos Pred Value          0.998    0.994    0.995    0.999    0.998
+## Neg Pred Value          1.000    0.999    0.999    0.999    1.000
+## Prevalence              0.284    0.194    0.174    0.164    0.184
+## Detection Rate          0.284    0.193    0.173    0.163    0.184
+## Detection Prevalence    0.285    0.194    0.174    0.163    0.184
+## Balanced Accuracy       0.999    0.998    0.997    0.997    0.999
