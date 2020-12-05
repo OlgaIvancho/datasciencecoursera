@@ -26,8 +26,8 @@ library(survival)
 library(splines)
 library(plyr)
 setwd("~/GitHub/Machine Learning PRJ1")
-training <- read.csv("~/GitHub/PracMacLearn/data/pml-training.csv", na.strings=c("#DIV/0!"), row.names = 1)
-testing <- read.csv("~/GitHub/PracMacLearn/data/pml-testing.csv", na.strings=c("#DIV/0!"), row.names = 1)
+training <- read.csv("~/GitHub/Machine Learning PRJ1.csv", na.strings=c("#DIV/0!"), row.names = 1)
+testing <- read.csv("~/GitHub/Machine Learning PRJ1.csv", na.strings=c("#DIV/0!"), row.names = 1)
 training <- training[, 6:dim(training)[2]]
 
 treshold <- dim(training)[1] * 0.95
